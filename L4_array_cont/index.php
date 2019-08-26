@@ -91,15 +91,31 @@
         return $temp;
     }
 
+    $selectResult = [];
+
     if(isset($_POST['selected'])){
         $selected = $_POST['selected'];       
         $selected2 = null; 
+        foreach ($people as $key => $value) {
+            if ($selected == $value['age']) {
+
+                $selectResult[$key] = $value;
+            }                          
+            
+        }
     }else if (isset($_POST['selected2'])) {        
         $selected2 = $_POST['selected2'];          
         $selected = null;
+        foreach ($people as $key => $value) {
+            if ($selected2 == $value['weight']) {
+                $selectResult[$key] = $value;
+            }                          
+            
+        }
     }else{
         $selected = null;
         $selected2 = null;
+        $selectResult = $people;
     }
 
    
@@ -151,27 +167,8 @@
                     </thead>
                     <tbody>
                     <?php
-                        if ($selected) {
-                            foreach ($people as $key => $value) {
-                                if ($selected == $value['age']) {
-                                    $tableTemplate = createTemplate($key, $value);
-                                    echo $tableTemplate;
-                                }                          
-                                
-                            }
-                        }else if ($selected2){
-                            foreach ($people as $key => $value) {
-                                if ($selected2 == $value['weight']) {
-                                    $tableTemplate = createTemplate($key, $value);
-                                    echo $tableTemplate;
-                                }                          
-                                
-                            }
-                        }else{
-                            foreach ($people as $key => $value) {                   
-                                $tableTemplate = createTemplate($key, $value);  
-                                echo $tableTemplate;                                     
-                            }
+                        foreach ($selectResult as $key => $value) {
+                            echo createTemplate($key, $value);
                         }
                     ?>
                     </tbody>
