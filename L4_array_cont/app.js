@@ -12,6 +12,7 @@ window.onload = () => {
                     newArr.forEach(element => {
                         if (event.target.value === element.value) {                                                   
                             
+                            event.target.selected = "selected";
                             document.querySelector(`#${mainForm}`).submit();
                             
                         }

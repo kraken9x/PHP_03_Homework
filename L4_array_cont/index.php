@@ -175,9 +175,17 @@
                 </table>
             </div>
         </div>
+        <?php
+            if ($selectResult) {
+                foreach ($selectResult as $key => $value) {
+                    $temp ='Average between age and weight is: <b>' . (($value["age"] + $value["weight"])/2) . '</b><br/>';
+                    echo $temp;
+                }
+            }
+        ?>
     </div>
 
-
+    
 
 
 
